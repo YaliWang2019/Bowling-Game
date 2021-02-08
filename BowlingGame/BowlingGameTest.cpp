@@ -25,26 +25,27 @@ protected:
 
 };
 
-TEST_CASE(BowlingGameTest, GutterGameScoresZero)
+TEST_CASE("All gutters scores 0")
 {
 	BowlingGame game;
-	RollMultiple(20, 0);
-	REQUIRE(0, game.Score());
+	game.RollMultiple(20, 0);
+	REQUIRE(game.Score() == 0);
 }
 
-TEST_CASE(BowlingGameTest, AllOnesScoresTwenty)
+TEST_CASE("All Ones Scores Twenty")
 {
 	BowlingGame game;
-	RollMultiple(20, 1);
-	REQUIRE(20, game.Score());
+	game.RollMultiple(20, 1);
+	REQUIRE(game.Score() == 20);
 }
 
-TEST_CASE(BowlingGameTest, SparePlusThreeScoresSixteen)
+TEST_CASE("One Spare with Three Pins While Others Miss Scores Sixteen")
 {
+	BowlingGame game;
 	RollOne(7);
 	RollOne(5);
 	RollOne(3);
-	RollMultiple(17, 0);
-	REQUIRE(16, game.Score());
+	game.RollMultiple(18, 0);
+	REQUIRE(game.Score() == 16);
 
 }
