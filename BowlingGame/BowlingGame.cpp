@@ -12,16 +12,33 @@ int BowlingGame::Score()
 {
 	int score = 0;
 	vector<int>::iterator pos = rolls.begin();
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < Frames; i++)
 	{
-		if (10 == *pos + *(pos + 1))
+		if (counts == BallOne(pos) + BallTwo(pos))
 		{
-			score += *pos + *(pos + 1) + *(pos + 2);
+			score += BallOne(pos) + BallTwo(pos) + *(pos + 2);
 		}
 		else {
-			score += *pos + *(pos + 1);
+			score += BallOne(pos) + BallTwo(pos);
 		}
 		pos += 2;
 	}
 	return score;
+}
+
+int BallOne(const vector<int>::iterator pos)
+{
+	return *pos;
+}
+int BallTwo(const vector<int>::iterator pos)
+{
+	return *(pos + 1);
+}
+int BallThree(const vector<int>::iterator pos)
+{
+	return *(pos + 2);
+}
+bool Spare(const vector<int>::iterator pos)
+{
+	return counts == BallOne(pos) + BallTwo(pos);
 }

@@ -13,7 +13,15 @@ public:
 	int Score();
 
 private:
+	static const int Frames = 10;
+	static const int counts = 10;
 	vector<int> rolls;
+
+	int BallOne(const vector<int>::iterator pos);
+	int BallTwo(const vector<int>::iterator pos);
+	int BallThree(const vector<int>::iterator pos);
+	
+	bool Spare(const vector<int>::iterator pos);
 };
 
 #endif 

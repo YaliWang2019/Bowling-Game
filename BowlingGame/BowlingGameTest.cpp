@@ -16,7 +16,11 @@ protected:
 	void RollMultiple(int times, int roll)
 	{
 		for (int i = 0; i < times; i++)
-			game.Roll(roll);
+			RollOne(roll);
+	}
+	void RollOne(int roll)
+	{
+		return game.Roll(roll);
 	}
 
 };
@@ -33,4 +37,14 @@ TEST_CASE(BowlingGameTest, AllOnesScoresTwenty)
 	BowlingGame game;
 	RollMultiple(20, 1);
 	REQUIRE(20, game.Score());
+}
+
+TEST_CASE(BowlingGameTest, SparePlusThreeScoresSixteen)
+{
+	RollOne(7);
+	RollOne(5);
+	RollOne(3);
+	RollMultiple(17, 0);
+	REQUIRE(16, game.Score());
+
 }
